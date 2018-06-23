@@ -1,0 +1,106 @@
+CREATE TABLE `category` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `CATEGORY_NAME` varchar(100) NOT NULL,
+  `CATEGORY_DESCRIPTION` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `delivery` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `OFFERID` bigint(20) NOT NULL,
+  `PRODUCT_ID` bigint(20) NOT NULL,
+  `ISAVAILABLE` varchar(1) NOT NULL,
+  `ARRIVALDATE` date DEFAULT NULL,
+  `DAYSINTRANSIT` int(11) DEFAULT NULL,
+  `DELIVERYCHARGE` decimal(12,2) DEFAULT NULL,
+  `ISFREEDELIVERYFORMEMBERS` varchar(1) NOT NULL,
+  `HAULAWAYMESSAGE` varchar(100) NOT NULL,
+  `HASSPECIALOFFERS` varchar(1) NOT NULL,
+  `TITLE` varchar(100) NOT NULL,
+  `AUTHOR` varchar(100) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `store_pickup` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `offerId` bigint(20) NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  `HIGHESTSTOREINDEX` int(11) DEFAULT NULL,
+  `RADIUS` varchar(100) NOT NULL,
+  `STORENAME` varchar(100) NOT NULL,
+  `DAYS` int(11) DEFAULT NULL,
+  `PROMISEDATE` date DEFAULT NULL,
+  `INSTOCKSTATUS` varchar(1) NOT NULL,
+  `QUANTITY` int(11) DEFAULT NULL,
+  `AVAILABLEQUANTITY` int(11) DEFAULT NULL,
+  `ISAUTOSTORE` varchar(1) NOT NULL,
+  `NEAREST` varchar(1) NOT NULL,
+  `STORENUMBER` varchar(20) NOT NULL,
+  `STREETADDRESS` varchar(100) NOT NULL,
+  `CITY` varchar(100) NOT NULL,
+  `STATE` varchar(100) NOT NULL,
+  `ZIPCODE` varchar(100) NOT NULL,
+  `PHONE` varchar(100) NOT NULL,
+  `SUNWH` varchar(100) NOT NULL,
+  `MONWH` varchar(100) NOT NULL,
+  `TUEWH` varchar(100) NOT NULL,
+  `WEDWH` varchar(100) NOT NULL,
+  `THUWH` varchar(100) NOT NULL,
+  `FRIWH` varchar(100) NOT NULL,
+  `SATWH` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `promo` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `PCODE` varchar(100) NOT NULL,
+  `PROMOID` varchar(100) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `TITLE` varchar(100) NOT NULL,
+  `PROMO_DETAILS` varchar(1000) NOT NULL,
+  `DISCAMT` decimal(12,2) DEFAULT NULL,
+  `DISCTYPE` varchar(100) NOT NULL,
+  `ENDDATE` date DEFAULT NULL,
+  `STARTDATE` date DEFAULT NULL,
+  `MINPURCHASEVAL` int(11) DEFAULT NULL,
+  `STATUS` varchar(10) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `product` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `PCODE` varchar(100) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `SHORT_DESCRIPTION` varchar(100) NOT NULL,
+  `LONG_DESCRIPTION` varchar(100) NOT NULL,
+  `PARENT_CATEGORY_ID` bigint(20) NOT NULL,
+  `CATEGORY_ID` bigint(20) NOT NULL,
+  `CANDISPLAY` varchar(1) NOT NULL,
+  `ISDELETED` varchar(1) NOT NULL,
+  `ISAUTOMOTIVE` varchar(1) NOT NULL,
+  `ISINTERNATIONAL` varchar(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKnqhslttwsobwtrbqptfj8ubfm` (`PARENT_CATEGORY_ID`),
+  KEY `FK7u438kvwr308xcwr4wbx36uiw` (`CATEGORY_ID`),
+  CONSTRAINT `FK7u438kvwr308xcwr4wbx36uiw` FOREIGN KEY (`CATEGORY_ID`) REFERENCES `category` (`id`),
+  CONSTRAINT `FKnqhslttwsobwtrbqptfj8ubfm` FOREIGN KEY (`PARENT_CATEGORY_ID`) REFERENCES `category` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `pricing` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `PCODE` varchar(100) NOT NULL,
+  `PRICE_ID` varchar(100) NOT NULL,
+  `memberType` varchar(100) NOT NULL,
+  `currencyCode` varchar(100) NOT NULL,
+  `priceType` varchar(1000) NOT NULL,
+  `label` decimal(12,2) DEFAULT NULL,
+  `display` varchar(100) NOT NULL,
+  `ORIG_PRICE` decimal(12,2) DEFAULT NULL,
+  `DISC_PRICE` decimal(12,2) DEFAULT NULL,
+  `STATUS` varchar(10) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
