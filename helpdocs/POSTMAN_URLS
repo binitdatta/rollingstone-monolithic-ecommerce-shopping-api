@@ -1,0 +1,363 @@
+CATEGORY
+
+POST http://localhost:8080/rollingstone-web-api/category
+
+BODY
+
+{
+  "categoryName":"Men's Clothing",
+  "categoryDescription":"Men's Branded Designer Clothing"
+}
+
+HEADERS
+
+Content-Type application/json
+Accept application/json
+
+POST http://localhost:8080/rollingstone-web-api/category
+
+BODY
+
+{
+  "categoryName":"Young Men's Clothing",
+  "categoryDescription":"Young Men's Branded Designer Clothing"
+}
+
+HEADERS
+
+Content-Type application/json
+Accept application/json
+
+GET http://localhost:8080/rollingstone-web-api/category
+
+[
+    {
+        "id": 3,
+        "categoryName": "Men's Clothing",
+        "categoryDescription": "Men's Branded Designer Clothing"
+    },
+    {
+        "id": 4,
+        "categoryName": "Young Men's Clothing",
+        "categoryDescription": "Young Men's Branded Designer Clothing"
+    }
+]
+
+
+GET http://localhost:8080/rollingstone-web-api/category/3
+
+{
+    "id": 3,
+    "categoryName": "Men's Clothing",
+    "categoryDescription": "Men's Branded Designer Clothing"
+}
+
+PUT http://localhost:8080/rollingstone-web-api/category/3
+
+{
+  "categoryName":"Young Women's Clothing",
+  "categoryDescription":"Young Women's Branded Designer Clothing"
+}
+
+POST http://localhost:8080/rollingstone-web-api/category
+
+BODY
+
+{
+  "categoryName":"Boy's Clothing",
+  "categoryDescription":"Boy's Branded Designer Clothing"
+}
+
+DELETE http://localhost:8080/rollingstone-web-api/category/5
+
+PRODUCT
+
+POST http://localhost:8080/rollingstone-web-api/product
+
+{
+  "productCode":"P1249493Z18",
+  "productName":"Little Black Dress",
+  "shortDescription":"Little Black Dress Knee High",
+  "longDescription":"Little Black Dress Knee High",
+  "canDisplay":"true",
+  "isDeleted":"false",
+  "isAutomotive":"false",
+  "parentCategory": {
+    "id":"3",
+    "categoryName":"Young Men's Clothing",
+    "categoryDescription":"Young Men's Branded Designer Clothing"
+    },
+  "category":{
+    "id":"3",
+    "categoryName":"Young Men's Clothing",
+    "categoryDescription":"Young Men's Branded Designer Clothing"
+    }
+}
+
+GET http://localhost:8080/rollingstone-web-api/product
+
+[
+    {
+        "id": 4,
+        "productCode": "P1249493Z18",
+        "productName": "Little Black Dress",
+        "shortDescription": "Little Black Dress Knee High",
+        "longDescription": "Little Black Dress Knee High",
+        "canDisplay": true,
+        "parentCategory": {
+            "id": 3,
+            "categoryName": "Young Women's Clothing",
+            "categoryDescription": "Young Women's Branded Designer Clothing"
+        },
+        "category": {
+            "id": 3,
+            "categoryName": "Young Women's Clothing",
+            "categoryDescription": "Young Women's Branded Designer Clothing"
+        },
+        "international": false,
+        "automotive": false,
+        "deleted": false
+    }
+]
+
+GET http://localhost:8080/rollingstone-web-api/product/4
+
+{
+    "id": 4,
+    "productCode": "P1249493Z18",
+    "productName": "Little Black Dress",
+    "shortDescription": "Little Black Dress Knee High",
+    "longDescription": "Little Black Dress Knee High",
+    "canDisplay": true,
+    "parentCategory": {
+        "id": 3,
+        "categoryName": "Young Women's Clothing",
+        "categoryDescription": "Young Women's Branded Designer Clothing"
+    },
+    "category": {
+        "id": 3,
+        "categoryName": "Young Women's Clothing",
+        "categoryDescription": "Young Women's Branded Designer Clothing"
+    },
+    "international": false,
+    "automotive": false,
+    "deleted": false
+}
+
+PUT http://localhost:8080/rollingstone-web-api/product/4
+
+{
+  "productCode":"P1249493Z18",
+  "productName":"Little Black Dress Knew Length",
+  "shortDescription":"Little Black Dress Knee High",
+  "longDescription":"Little Black Dress Knee High",
+  "canDisplay":"true",
+  "isDeleted":"false",
+  "isAutomotive":"false",
+  "parentCategory": {
+    "id":"3",
+    "categoryName":"Young Men's Clothing",
+    "categoryDescription":"Young Men's Branded Designer Clothing"
+    },
+  "category":{
+    "id":"3",
+    "categoryName":"Young Men's Clothing",
+    "categoryDescription":"Young Men's Branded Designer Clothing"
+    }
+}
+
+DELETE http://localhost:8080/rollingstone-web-api/product/4
+
+DELIVERY
+
+INSERT INTO custorder 
+  VALUES ('Kevin', 'yes' , STR_TO_DATE('1-01-2012', '%d-%m-%Y') ) ;
+  
+  INSERT INTO custorder 
+  VALUES ('Kevin', 'yes', '2012-01-01') ;
+
+INSERT INTO `ecommdb`.`delivery`
+(`OFFERID`,
+`PRODUCT_ID`,
+`ISAVAILABLE`,
+`ARRIVALDATE`,
+`DAYSINTRANSIT`,
+`DELIVERYCHARGE`,
+`ISFREEDELIVERYFORMEMBERS`,
+`HAULAWAYMESSAGE`,
+`HASSPECIALOFFERS`)
+VALUES
+(1111111,
+11111111,
+1,
+'2018-06-18',
+6,
+35.00,
+1,
+'Hawl Away Old Equipment',
+0);
+
+  
+GET http://localhost:8080/rollingstone-web-api/delivery
+
+[
+    {
+        "id": 1,
+        "offerId": 1111111,
+        "productId": 11111111,
+        "availableDate": 1529298000000,
+        "daysInTransit": 6,
+        "deleveryCharge": 35,
+        "haulsAwayMessage": "Hawl Away Old Equipment",
+        "hasSpecialOffers": false,
+        "available": true,
+        "freeDeliveryAvailable": true
+    }
+]
+
+POST http://localhost:8080/rollingstone-web-api/delivery
+
+{
+        "offerId": 222222,
+        "productId": 222222,
+        "availableDate": "2018-06-23",
+        "daysInTransit": 6,
+        "deleveryCharge": 35,
+        "haulsAwayMessage": "Hawl Away Old Equipment",
+        "hasSpecialOffers": "false",
+        "available": "true",
+        "freeDeliveryAvailable": "true"
+}
+
+
+GET http://localhost:8080/rollingstone-web-api/delivery/2
+
+{
+    "id": 2,
+    "offerId": 222222,
+    "productId": 222222,
+    "availableDate": 1529643600000,
+    "daysInTransit": 6,
+    "deleveryCharge": 35,
+    "haulsAwayMessage": "Hawl Away Old Equipment",
+    "hasSpecialOffers": false,
+    "available": true,
+    "freeDeliveryAvailable": true
+}
+
+PUT http://localhost:8080/rollingstone-web-api/delivery/2
+
+
+{
+		"id":2,
+        "offerId": 222222,
+        "productId": 222222,
+        "availableDate": "2018-06-23",
+        "daysInTransit": 6,
+        "deleveryCharge": 35,
+        "haulsAwayMessage": "Hawl Away Older Equipment",
+        "hasSpecialOffers": "false",
+        "available": "true",
+        "freeDeliveryAvailable": "true"
+}
+
+DELETE GET http://localhost:8080/rollingstone-web-api/delivery/2
+
+PRICING
+
+INSERT INTO `ecommdb`.`pricing`
+(`PCODE`,
+`PRICE_ID`,
+`memberType`,
+`currencyCode`,
+`priceType`,
+`label`,
+`display`,
+`ORIG_PRICE`,
+`DISC_PRICE`,
+`STATUS`)
+VALUES
+('1111111',
+'11111111',
+'G',
+'USD',
+'final',
+23.99,
+'final',
+35.99,
+23.99,
+'A');
+
+
+PRICING
+
+GET http://localhost:8080/rollingstone-web-api/pricing
+
+[
+    {
+        "id": 1,
+        "productCode": "1111111",
+        "pricingId": "11111111",
+        "memberType": "G",
+        "currencyCode": "USD",
+        "priceType": "final",
+        "discuountAmount": 23.99,
+        "display": "final",
+        "originalPrice": 35.99,
+        "discountedPrice": 23.99,
+        "status": "A"
+    }
+]
+
+
+POST http://localhost:8080/rollingstone-web-api/pricing
+
+
+    {
+        "productCode": "2222222",
+        "pricingId": "23223232",
+        "memberType": "G",
+        "currencyCode": "USD",
+        "priceType": "final",
+        "discuountAmount": 23.99,
+        "display": "final",
+        "originalPrice": 49.99,
+        "discountedPrice": 23.99,
+        "status": "A"
+    }
+
+
+GET http://localhost:8080/rollingstone-web-api/pricing/2
+
+{
+    "id": 2,
+    "productCode": "2222222",
+    "pricingId": "23223232",
+    "memberType": "G",
+    "currencyCode": "USD",
+    "priceType": "final",
+    "discuountAmount": 23.99,
+    "display": "final",
+    "originalPrice": 49.99,
+    "discountedPrice": 23.99,
+    "status": "A"
+}    
+
+PUT http://localhost:8080/rollingstone-web-api/pricing/2
+
+
+    {
+        "productCode": "2222222",
+        "pricingId": "23223232",
+        "memberType": "G",
+        "currencyCode": "USD",
+        "priceType": "final",
+        "discuountAmount": 23.99,
+        "display": "final",
+        "originalPrice": 79.99,
+        "discountedPrice": 23.99,
+        "status": "A"
+    }
+
+    
+ DELETE http://localhost:8080/rollingstone-web-api/pricing/2

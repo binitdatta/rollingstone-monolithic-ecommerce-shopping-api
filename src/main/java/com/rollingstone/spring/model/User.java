@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity(name = "CART")
+@Entity(name = "USER")
 public class User {
 
 	@Id

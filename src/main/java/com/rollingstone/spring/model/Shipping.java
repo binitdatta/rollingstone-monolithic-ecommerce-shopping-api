@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "CATEGORY")
+@Entity(name = "SHIPPING")
 public class Shipping {
 
 	@Id
@@ -28,7 +28,7 @@ public class Shipping {
 	@Column(name = "ARRIVALDATE", nullable = false)
 	private Date availableDate;
 	
-	@Column(name = "ISAVAILABLE", nullable = false)
+	@Column(name = "ISFREE", nullable = false)
 	private boolean isFree;
 	
 	@Column(name = "DAYSINTRANSIT", nullable = false)
