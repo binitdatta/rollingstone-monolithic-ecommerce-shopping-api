@@ -471,7 +471,7 @@ public class StorePickup {
 			boolean isNearest, String storeNumber, String streetAddress, String city, String state, String zipCode,
 			String phone, String sundayWorkingHours, String mondayWorkingHours, String tuesdayWorkingHours,
 			String wednesdayWorkingHours, String thursdayWorkingHours, String fridayWorkingHours,
-			String atturdayWorkingHours) {
+			String saturdayWorkingHours) {
 		super();
 		this.id = id;
 		this.offerId = offerId;
@@ -498,7 +498,7 @@ public class StorePickup {
 		this.wednesdayWorkingHours = wednesdayWorkingHours;
 		this.thursdayWorkingHours = thursdayWorkingHours;
 		this.fridayWorkingHours = fridayWorkingHours;
-		this.atturdayWorkingHours = atturdayWorkingHours;
+		this.saturdayWorkingHours = saturdayWorkingHours;
 	}
 
 	public StorePickup() {
