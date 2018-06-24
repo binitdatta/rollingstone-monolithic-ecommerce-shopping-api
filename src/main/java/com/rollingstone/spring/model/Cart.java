@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -36,10 +37,7 @@ public class Cart {
 	@JoinColumn(name="USER_PROFILE_ID")
 	private User user;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cart")
-    @JsonManagedReference
-	private Set<CartItems> cartItems = new HashSet<CartItems>();
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -72,21 +70,11 @@ public class Cart {
 		this.user = user;
 	}
 
-	
-
-	public Set<CartItems> getCartItems() {
-		return cartItems;
-	}
-
-	public void setCartItems(Set<CartItems> cartItems) {
-		this.cartItems = cartItems;
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cartItems == null) ? 0 : cartItems.hashCode());
 		result = prime * result + ((cartDate == null) ? 0 : cartDate.hashCode());
 		result = prime * result + ((cartTotal == null) ? 0 : cartTotal.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -103,11 +91,6 @@ public class Cart {
 		if (getClass() != obj.getClass())
 			return false;
 		Cart other = (Cart) obj;
-		if (cartItems == null) {
-			if (other.cartItems != null)
-				return false;
-		} else if (!cartItems.equals(other.cartItems))
-			return false;
 		if (cartDate == null) {
 			if (other.cartDate != null)
 				return false;
@@ -131,13 +114,12 @@ public class Cart {
 		return true;
 	}
 
-	public Cart(Long id, Double cartTotal, Date cartDate, User user, Set<CartItems> cartItems) {
+	public Cart(Long id, Double cartTotal, Date cartDate, User user) {
 		super();
 		this.id = id;
 		this.cartTotal = cartTotal;
 		this.cartDate = cartDate;
 		this.user = user;
-		this.cartItems = cartItems;
 	}
 
 	public Cart() {
@@ -146,10 +128,9 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", cartTotal=" + cartTotal + ", cartDate=" + cartDate + ", user=" + user
-				+ ", cartItems=" + cartItems + "]";
+		return "Cart [id=" + id + ", cartTotal=" + cartTotal + ", cartDate=" + cartDate + ", user=" + user + "]";
 	}
-	
+
 	
 
 }

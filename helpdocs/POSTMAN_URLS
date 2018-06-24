@@ -361,3 +361,873 @@ PUT http://localhost:8080/rollingstone-web-api/pricing/2
 
     
  DELETE http://localhost:8080/rollingstone-web-api/pricing/2
+ 
+ PROMO
+ 
+ INSERT INTO `ecommdb`.`promo`
+(
+`PCODE`,
+`PROMOID`,
+`NAME`,
+`TITLE`,
+`PROMO_DETAILS`,
+`DISCAMT`,
+`DISCTYPE`,
+`ENDDATE`,
+`STARTDATE`,
+`MINPURCHASEVAL`,
+`STATUS`)
+VALUES
+(
+'11111111111111',
+'2222222222222',
+'Test Promo',
+'Test Promo Title',
+'Test Promo Title',
+10.99,
+'web',
+'2018-06-29',
+'2018-06-23',
+1,
+'A');
+ 
+ GET http://localhost:8080/rollingstone-web-api/promo
+ 
+ [
+    {
+        "id": 1,
+        "productCode": "11111111111111",
+        "promoCode": "2222222222222",
+        "name": "Test Promo",
+        "title": "Test Promo Title",
+        "promoDetails": "Test Promo Title",
+        "discuountAmount": 10.99,
+        "discountType": "web",
+        "endDate": "2018-06-29",
+        "startDate": "2018-06-23",
+        "minimumPurchaseValue": "1",
+        "status": "A"
+    }
+]
+
+POST http://localhost:8080/rollingstone-web-api/promo
+
+{
+       
+        "productCode": "33333333333333",
+        "promoCode": "4444444444444444",
+        "name": "Test Promo",
+        "title": "Test Promo Title",
+        "promoDetails": "Test Promo Title",
+        "discuountAmount": 10.99,
+        "discountType": "web",
+        "endDate": "2018-06-29",
+        "startDate": "2018-06-23",
+        "minimumPurchaseValue": "1",
+        "status": "A"
+    }
+
+GET http://localhost:8080/rollingstone-web-api/promo/2
+
+    
+    {
+    "id": 2,
+    "productCode": "33333333333333",
+    "promoCode": "4444444444444444",
+    "name": "Test Promo",
+    "title": "Test Promo Title",
+    "promoDetails": "Test Promo Title",
+    "discuountAmount": 10.99,
+    "discountType": "web",
+    "endDate": "2018-06-28",
+    "startDate": "2018-06-22",
+    "minimumPurchaseValue": "1",
+    "status": "A"
+}
+
+PUT  GET http://localhost:8080/rollingstone-web-api/promo/2
+
+{
+       
+        "productCode": "33333333333333",
+        "promoCode": "4444444444444444",
+        "name": "Test Promo Updated",
+        "title": "Test Promo Title",
+        "promoDetails": "Test Promo Title",
+        "discuountAmount": 10.99,
+        "discountType": "web",
+        "endDate": "2018-06-29",
+        "startDate": "2018-06-23",
+        "minimumPurchaseValue": "1",
+        "status": "A"
+    }
+    
+DELETE    http://localhost:8080/rollingstone-web-api/promo/2
+
+SHIPPING
+
+INSERT INTO `ecommdb`.`shipping`
+(`OFFERID`,
+`PRODUCT_ID`,
+`ISAVAILABLE`,
+`ARRIVALDATE`,
+`ISFREE`,
+`DAYSINTRANSIT`,
+`SHIPPINGCHARGE`,
+`SHIPPINGMODE`,
+`SHIPCARRIER`,
+`ISFREESHIPPINGFORMEMBERS`)
+VALUES
+(
+'111111111111',
+'2222222222222',
+1,
+'2018-06-29',
+1,
+3,
+23.99,
+'GROUND',
+'UPS',
+1);
+
+
+GET http://localhost:8080/rollingstone-web-api/shipping
+
+[
+    {
+        "id": 1,
+        "offerId": 111111111111,
+        "productId": 2222222222222,
+        "availableDate": 1530248400000,
+        "daysInTransit": 3,
+        "shippingCharge": 23.99,
+        "shippingMode": "GROUND",
+        "shipCarrier": "UPS",
+        "available": true,
+        "freeShippingForMembers": true,
+        "free": true
+    },
+    {
+        "id": 2,
+        "offerId": 111111111111,
+        "productId": 3333333333333,
+        "availableDate": 1529643600000,
+        "daysInTransit": 3,
+        "shippingCharge": 23.99,
+        "shippingMode": "GROUND",
+        "shipCarrier": "FEDEX",
+        "available": true,
+        "freeShippingForMembers": true,
+        "free": true
+    }
+]
+
+POST  http://localhost:8080/rollingstone-web-api/shipping
+
+ {
+     
+        "offerId": "111111111111",
+        "productId": "3333333333333",
+        "availableDate": "2018-06-23",
+        "daysInTransit": 3,
+        "shippingCharge": 23.99,
+        "shippingMode": "GROUND",
+        "shipCarrier": "FEDEX",
+        "available": "true",
+        "freeShippingForMembers": "true",
+        "free": "true"
+    }
+    
+GET http://localhost:8080/rollingstone-web-api/shipping/2
+
+{
+    "id": 2,
+    "offerId": 111111111111,
+    "productId": 3333333333333,
+    "availableDate": 1529643600000,
+    "daysInTransit": 3,
+    "shippingCharge": 23.99,
+    "shippingMode": "GROUND",
+    "shipCarrier": "FEDEX",
+    "available": true,
+    "freeShippingForMembers": true,
+    "free": true
+}
+
+PUT http://localhost:8080/rollingstone-web-api/shipping/2
+
+
+ {
+     
+        "offerId": "111111111111",
+        "productId": "3333333333333",
+        "availableDate": "2018-06-23",
+        "daysInTransit": 3,
+        "shippingCharge": 23.99,
+        "shippingMode": "GROUND",
+        "shipCarrier": "FEDEX 1111",
+        "available": "true",
+        "freeShippingForMembers": "true",
+        "free": "true"
+    }    
+    
+DELETE http://localhost:8080/rollingstone-web-api/shipping/2
+
+STORE PICKUP
+
+INSERT INTO `ecommdb`.`store_pickup`
+(`offerId`,
+`product_id`,
+`HIGHESTSTOREINDEX`,
+`RADIUS`,
+`STORENAME`,
+`DAYS`,
+`PROMISEDATE`,
+`INSTOCKSTATUS`,`QUANTITY`,`AVAILABLEQUANTITY`,`ISAUTOSTORE`,`NEAREST`,
+`STORENUMBER`,
+`STREETADDRESS`,
+`CITY`,
+`STATE`,
+`ZIPCODE`,
+`PHONE`,
+`SUNWH`,
+`MONWH`,
+`TUEWH`,
+`WEDWH`,
+`THURWH`,
+`FRIWH`,
+`SATWH`)
+VALUES
+(1111111111,
+222222222222,
+64,
+'50',
+'Bolingbrook Store',
+3,
+'2018-06-29',
+1,1,1,0,1,
+'1234','123 Main Street','Bolingbrook','IL','60565',
+'333-333-3333',
+'9 AM to 5 PM',
+'9 AM to 5 PM',
+'9 AM to 5 PM',
+'9 AM to 5 PM',
+'9 AM to 5 PM',
+'9 AM to 5 PM',
+'9 AM to 5 PM');
+
+GET http://localhost:8080/rollingstone-web-api/storePickup
+
+[
+    {
+        "id": 1,
+        "offerId": 1111111111,
+        "productId": 222222222222,
+        "highestStoreIndex": 64,
+        "radius": "50",
+        "storeName": "Bolingbrook Store",
+        "days": 3,
+        "promoseDate": 1530248400000,
+        "inStockStatus": true,
+        "quantity": 1,
+        "availableQuantity": 1,
+        "storeNumber": "1234",
+        "streetAddress": "123 Main Street",
+        "city": "Bolingbrook",
+        "state": "IL",
+        "zipCode": "60565",
+        "phone": "333-333-3333",
+        "sundayWorkingHours": "9 AM to 5 PM",
+        "mondayWorkingHours": "9 AM to 5 PM",
+        "tuesdayWorkingHours": "9 AM to 5 PM",
+        "wednesdayWorkingHours": "9 AM to 5 PM",
+        "thursdayWorkingHours": "9 AM to 5 PM",
+        "fridayWorkingHours": "9 AM to 5 PM",
+        "saturdayWorkingHours": "9 AM to 5 PM",
+        "nearest": true,
+        "autostore": false
+    }
+]
+
+POST http://localhost:8080/rollingstone-web-api/storePickup
+
+ {
+        "offerId": 2222222222,
+        "productId": 3333333333,
+        "highestStoreIndex": 64,
+        "radius": "50",
+        "storeName": "Naperville Store",
+        "days": 3,
+        "promoseDate": 1530248400000,
+        "inStockStatus": "true",
+        "quantity": 1,
+        "availableQuantity": 1,
+        "storeNumber": "1234",
+        "streetAddress": "123 Main Street",
+        "city": "Naperville",
+        "state": "IL",
+        "zipCode": "60565",
+        "phone": "444-444-4444",
+        "sundayWorkingHours": "9 AM to 5 PM",
+        "mondayWorkingHours": "9 AM to 5 PM",
+        "tuesdayWorkingHours": "9 AM to 5 PM",
+        "wednesdayWorkingHours": "9 AM to 5 PM",
+        "thursdayWorkingHours": "9 AM to 5 PM",
+        "fridayWorkingHours": "9 AM to 5 PM",
+        "saturdayWorkingHours": "9 AM to 5 PM",
+        "nearest": "true",
+        "autostore": "false"
+}
+
+GET http://localhost:8080/rollingstone-web-api/storePickup
+
+[
+    {
+        "id": 1,
+        "offerId": 1111111111,
+        "productId": 222222222222,
+        "highestStoreIndex": 64,
+        "radius": "50",
+        "storeName": "Bolingbrook Store",
+        "days": 3,
+        "promoseDate": 1530248400000,
+        "inStockStatus": true,
+        "quantity": 1,
+        "availableQuantity": 1,
+        "storeNumber": "1234",
+        "streetAddress": "123 Main Street",
+        "city": "Bolingbrook",
+        "state": "IL",
+        "zipCode": "60565",
+        "phone": "333-333-3333",
+        "sundayWorkingHours": "9 AM to 5 PM",
+        "mondayWorkingHours": "9 AM to 5 PM",
+        "tuesdayWorkingHours": "9 AM to 5 PM",
+        "wednesdayWorkingHours": "9 AM to 5 PM",
+        "thursdayWorkingHours": "9 AM to 5 PM",
+        "fridayWorkingHours": "9 AM to 5 PM",
+        "saturdayWorkingHours": "9 AM to 5 PM",
+        "nearest": true,
+        "autostore": false
+    },
+    {
+        "id": 2,
+        "offerId": 2222222222,
+        "productId": 3333333333,
+        "highestStoreIndex": 64,
+        "radius": "50",
+        "storeName": "Naperville Store",
+        "days": 3,
+        "promoseDate": 1530248400000,
+        "inStockStatus": true,
+        "quantity": 1,
+        "availableQuantity": 1,
+        "storeNumber": "1234",
+        "streetAddress": "123 Main Street",
+        "city": "Naperville",
+        "state": "IL",
+        "zipCode": "60565",
+        "phone": "444-444-4444",
+        "sundayWorkingHours": "9 AM to 5 PM",
+        "mondayWorkingHours": "9 AM to 5 PM",
+        "tuesdayWorkingHours": "9 AM to 5 PM",
+        "wednesdayWorkingHours": "9 AM to 5 PM",
+        "thursdayWorkingHours": "9 AM to 5 PM",
+        "fridayWorkingHours": "9 AM to 5 PM",
+        "saturdayWorkingHours": "9 AM to 5 PM",
+        "nearest": true,
+        "autostore": false
+    }
+]
+
+GET http://localhost:8080/rollingstone-web-api/storePickup/2
+
+{
+    "id": 2,
+    "offerId": 2222222222,
+    "productId": 3333333333,
+    "highestStoreIndex": 64,
+    "radius": "50",
+    "storeName": "Naperville Store",
+    "days": 3,
+    "promoseDate": 1530248400000,
+    "inStockStatus": true,
+    "quantity": 1,
+    "availableQuantity": 1,
+    "storeNumber": "1234",
+    "streetAddress": "123 Main Street",
+    "city": "Naperville",
+    "state": "IL",
+    "zipCode": "60565",
+    "phone": "444-444-4444",
+    "sundayWorkingHours": "9 AM to 5 PM",
+    "mondayWorkingHours": "9 AM to 5 PM",
+    "tuesdayWorkingHours": "9 AM to 5 PM",
+    "wednesdayWorkingHours": "9 AM to 5 PM",
+    "thursdayWorkingHours": "9 AM to 5 PM",
+    "fridayWorkingHours": "9 AM to 5 PM",
+    "saturdayWorkingHours": "9 AM to 5 PM",
+    "nearest": true,
+    "autostore": false
+}
+
+
+PUT http://localhost:8080/rollingstone-web-api/storePickup/2
+
+{
+        "offerId": 2222222222,
+        "productId": 3333333333,
+        "highestStoreIndex": 64,
+        "radius": "50",
+        "storeName": "Naperville Store",
+        "days": 3,
+        "promoseDate": 1530248400000,
+        "inStockStatus": "true",
+        "quantity": 1,
+        "availableQuantity": 1,
+        "storeNumber": "56789",
+        "streetAddress": "123 Main Street",
+        "city": "Naperville",
+        "state": "IL",
+        "zipCode": "60565",
+        "phone": "444-444-4444",
+        "sundayWorkingHours": "9 AM to 5 PM",
+        "mondayWorkingHours": "9 AM to 5 PM",
+        "tuesdayWorkingHours": "9 AM to 5 PM",
+        "wednesdayWorkingHours": "9 AM to 5 PM",
+        "thursdayWorkingHours": "9 AM to 5 PM",
+        "fridayWorkingHours": "9 AM to 5 PM",
+        "saturdayWorkingHours": "9 AM to 5 PM",
+        "nearest": "true",
+        "autostore": "false"
+}
+
+GET http://localhost:8080/rollingstone-web-api/storePickup/2
+
+{
+    "id": 2,
+    "offerId": 2222222222,
+    "productId": 3333333333,
+    "highestStoreIndex": 64,
+    "radius": "50",
+    "storeName": "Naperville Store",
+    "days": 3,
+    "promoseDate": 1530248400000,
+    "inStockStatus": true,
+    "quantity": 1,
+    "availableQuantity": 1,
+    "storeNumber": "56789",
+    "streetAddress": "123 Main Street",
+    "city": "Naperville",
+    "state": "IL",
+    "zipCode": "60565",
+    "phone": "444-444-4444",
+    "sundayWorkingHours": "9 AM to 5 PM",
+    "mondayWorkingHours": "9 AM to 5 PM",
+    "tuesdayWorkingHours": "9 AM to 5 PM",
+    "wednesdayWorkingHours": "9 AM to 5 PM",
+    "thursdayWorkingHours": "9 AM to 5 PM",
+    "fridayWorkingHours": "9 AM to 5 PM",
+    "saturdayWorkingHours": "9 AM to 5 PM",
+    "nearest": true,
+    "autostore": false
+}
+
+
+DELETE http://localhost:8080/rollingstone-web-api/storePickup/2
+
+
+USER
+
+INSERT INTO `ecommdb`.`user`
+(`USER_NAME`,
+`FIRST_NAME`,
+`LAST_NAME`,
+`SEX`,
+`MMEBER_TYPE`,
+`REGISTRATION_DATE`)
+VALUES
+('davidjohnson',
+'David',
+'Johnson',
+'M',
+'Gold',
+'2015-06-20');
+
+GET http://localhost:8080/rollingstone-web-api/user
+
+[
+    {
+        "id": 1,
+        "userName": "davidjohnson",
+        "firstName": "David",
+        "lastName": "Johnson",
+        "sex": "M",
+        "memberType": "Gold",
+        "rgistrationDate": "2015-06-20"
+    }
+]
+
+POST http://localhost:8080/rollingstone-web-api/user
+
+  {
+         "userName": "briansmith",
+        "firstName": "Brian",
+        "lastName": "Smith",
+        "sex": "M",
+        "memberType": "Gold",
+        "rgistrationDate": "2015-06-20"
+     }
+     
+GET   http://localhost:8080/rollingstone-web-api/user
+
+[
+    {
+        "id": 1,
+        "userName": "davidjohnson",
+        "firstName": "David",
+        "lastName": "Johnson",
+        "sex": "M",
+        "memberType": "Gold",
+        "rgistrationDate": "2015-06-20"
+    },
+    {
+        "id": 2,
+        "userName": "briansmith",
+        "firstName": "Brian",
+        "lastName": "Smith",
+        "sex": "M",
+        "memberType": "Gold",
+        "rgistrationDate": "2015-06-19"
+    }
+]
+
+GET http://localhost:8080/rollingstone-web-api/user/2
+
+{
+    "id": 2,
+    "userName": "briansmith",
+    "firstName": "Brian",
+    "lastName": "Smith",
+    "sex": "M",
+    "memberType": "Gold",
+    "rgistrationDate": "2015-06-19"
+}   
+
+PUT http://localhost:8080/rollingstone-web-api/user
+
+{
+    "id": 2,
+    "userName": "briansmith",
+    "firstName": "Brian",
+    "lastName": "Smith",
+    "sex": "M",
+    "memberType": "Silver",
+    "rgistrationDate": "2015-06-19"
+}
+
+GET http://localhost:8080/rollingstone-web-api/user/2
+
+{
+    "id": 2,
+    "userName": "briansmith",
+    "firstName": "Brian",
+    "lastName": "Smith",
+    "sex": "M",
+    "memberType": "Silver",
+    "rgistrationDate": "2015-06-18"
+}  
+  
+DELETE http://localhost:8080/rollingstone-web-api/user/2
+
+CART
+
+INSERT INTO `ecommdb`.`cart`
+(`USER_PROFILE_ID`,
+`CART_DATE`,
+`CART_TOTAL`
+)
+VALUES
+(1,
+'2018-06-24',
+100.00);
+
+
+GET http://localhost:8080/rollingstone-web-api/cart
+
+[
+    {
+        "id": 1,
+        "cartTotal": 100,
+        "cartDate": "2018-06-24",
+        "user": {
+            "id": 1,
+            "userName": "davidjohnson",
+            "firstName": "David",
+            "lastName": "Johnson",
+            "sex": "M",
+            "memberType": "Gold",
+            "rgistrationDate": "2015-06-20"
+        }
+    }
+]
+
+POST http://localhost:8080/rollingstone-web-api/cart
+
+
+{
+        "cartTotal": 55,
+        "cartDate": "2018-06-24",
+        "user": {
+            "id": 1,
+            "userName": "davidjohnson",
+            "firstName": "David",
+            "lastName": "Johnson",
+            "sex": "M",
+            "memberType": "Gold",
+            "rgistrationDate": "2015-06-20"
+        }
+ }
+
+GET http://localhost:8080/rollingstone-web-api/cart
+
+[
+    {
+        "id": 1,
+        "cartTotal": 100,
+        "cartDate": "2018-06-24",
+        "user": {
+            "id": 1,
+            "userName": "davidjohnson",
+            "firstName": "David",
+            "lastName": "Johnson",
+            "sex": "M",
+            "memberType": "Gold",
+            "rgistrationDate": "2015-06-20"
+        }
+    },
+    {
+        "id": 2,
+        "cartTotal": 55,
+        "cartDate": "2018-06-23",
+        "user": {
+            "id": 1,
+            "userName": "davidjohnson",
+            "firstName": "David",
+            "lastName": "Johnson",
+            "sex": "M",
+            "memberType": "Gold",
+            "rgistrationDate": "2015-06-20"
+        }
+    }
+]
+
+GET http://localhost:8080/rollingstone-web-api/cart/2
+
+{
+    "id": 2,
+    "cartTotal": 55,
+    "cartDate": "2018-06-23",
+    "user": {
+        "id": 1,
+        "userName": "davidjohnson",
+        "firstName": "David",
+        "lastName": "Johnson",
+        "sex": "M",
+        "memberType": "Gold",
+        "rgistrationDate": "2015-06-20"
+    }
+}
+
+PUT http://localhost:8080/rollingstone-web-api/cart/2
+
+{
+        "cartTotal": 155,
+        "cartDate": "2018-06-24",
+        "user": {
+            "id": 1,
+            "userName": "davidjohnson",
+            "firstName": "David",
+            "lastName": "Johnson",
+            "sex": "M",
+            "memberType": "Gold",
+            "rgistrationDate": "2015-06-20"
+        }
+    }    
+    
+GET http://localhost:8080/rollingstone-web-api/cart/2
+
+{
+    "id": 2,
+    "cartTotal": 155,
+    "cartDate": "2018-06-23",
+    "user": {
+        "id": 1,
+        "userName": "davidjohnson",
+        "firstName": "David",
+        "lastName": "Johnson",
+        "sex": "M",
+        "memberType": "Gold",
+        "rgistrationDate": "2015-06-20"
+    }
+}
+
+DELETE http://localhost:8080/rollingstone-web-api/cart/2
+
+GET http://localhost:8080/rollingstone-web-api/cart
+
+[
+    {
+        "id": 1,
+        "cartTotal": 100,
+        "cartDate": "2018-06-24",
+        "user": {
+            "id": 1,
+            "userName": "davidjohnson",
+            "firstName": "David",
+            "lastName": "Johnson",
+            "sex": "M",
+            "memberType": "Gold",
+            "rgistrationDate": "2015-06-20"
+        }
+    }
+]
+    
+CART_ITEM
+    
+INSERT INTO `ecommdb`.`cart_items`
+(`CART_ID`,
+`OFFERID`,
+`PRODUCT_ID`,
+`QUANTITY`,
+`UNIT`,
+`PRICE`,
+`ITEM_TOTAL`,
+`FFM_TYPE`)
+VALUES
+(1,
+22222222,
+22222222,
+2,
+'pcs',
+50.00,
+100.00,
+'delivery');
+
+GET http://localhost:8080/rollingstone-web-api/cartitem
+
+[
+    {
+        "id": 0,
+        "offerId": 22222222,
+        "productId": 22222222,
+        "quantity": 2,
+        "unit": "pcs",
+        "price": 50,
+        "itemTotal": 100,
+        "fulfillmentType": "delivery"
+    }
+]
+
+POST http://localhost:8080/rollingstone-web-api/cartitem
+
+{
+        "cartId":1,
+        "offerId": 3333333,
+        "productId": 4444444,
+        "quantity": 2,
+        "unit": "pcs",
+        "price": 20,
+        "itemTotal": 80,
+        "fulfillmentType": "delivery"
+}
+
+GET http://localhost:8080/rollingstone-web-api/cartitem
+
+[
+    {
+        "id": 2,
+        "cartId": 1,
+        "offerId": 22222222,
+        "productId": 22222222,
+        "quantity": 2,
+        "unit": "pcs",
+        "price": 50,
+        "itemTotal": 100,
+        "fulfillmentType": "delivery"
+    },
+    {
+        "id": 3,
+        "cartId": 1,
+        "offerId": 3333333,
+        "productId": 4444444,
+        "quantity": 2,
+        "unit": "pcs",
+        "price": 20,
+        "itemTotal": 80,
+        "fulfillmentType": "delivery"
+    }
+]
+
+
+PUT http://localhost:8080/rollingstone-web-api/cartitem/3
+
+  {
+        "id": 3,
+        "cartId": 1,
+        "offerId": 3333333,
+        "productId": 4444444,
+        "quantity": 2,
+        "unit": "pcs",
+        "price": 20,
+        "itemTotal": 80,
+        "fulfillmentType": "shipping"
+ }
+ 
+ GET http://localhost:8080/rollingstone-web-api/cartitem
+ 
+ [
+    {
+        "id": 2,
+        "cartId": 1,
+        "offerId": 22222222,
+        "productId": 22222222,
+        "quantity": 2,
+        "unit": "pcs",
+        "price": 50,
+        "itemTotal": 100,
+        "fulfillmentType": "delivery"
+    },
+    {
+        "id": 3,
+        "cartId": 1,
+        "offerId": 3333333,
+        "productId": 4444444,
+        "quantity": 2,
+        "unit": "pcs",
+        "price": 20,
+        "itemTotal": 80,
+        "fulfillmentType": "shipping"
+    }
+]
+
+DELETE http://localhost:8080/rollingstone-web-api/cartitem/3
+
+GET http://localhost:8080/rollingstone-web-api/cartitem
+
+[
+    {
+        "id": 2,
+        "cartId": 1,
+        "offerId": 22222222,
+        "productId": 22222222,
+        "quantity": 2,
+        "unit": "pcs",
+        "price": 50,
+        "itemTotal": 100,
+        "fulfillmentType": "delivery"
+    }
+]
+
+    
+   

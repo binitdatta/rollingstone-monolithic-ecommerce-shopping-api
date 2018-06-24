@@ -1,5 +1,6 @@
 package com.rollingstone.spring.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +33,14 @@ public class CartController {
    @GetMapping("/cart/{id}")
    public ResponseEntity<Cart> get(@PathVariable("id") long id) {
 	   Cart cart = cartService.get(id);
-      return ResponseEntity.ok().body(cart);
+	   return ResponseEntity.ok().body(cart);
    }
 
-   /*---get all Categories---*/
+   /*---get all Carts---*/
    @GetMapping("/cart")
    public ResponseEntity<List<Cart>> list() {
-      List<Cart> categories = cartService.list();
-      return ResponseEntity.ok().body(categories);
+      List<Cart> carts = cartService.list();
+      return ResponseEntity.ok().body(carts);
    }
 
    /*---Update a Cart by id---*/

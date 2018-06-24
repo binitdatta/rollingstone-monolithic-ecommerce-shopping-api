@@ -48,7 +48,6 @@ public class CartDaoImpl implements CartDao {
       Cart existingCart = session.byId(Cart.class).load(id);
       
       existingCart.setCartDate(cart.getCartDate());
-      existingCart.setCartItems(cart.getCartItems());
       existingCart.setCartTotal(cart.getCartTotal());
       existingCart.setUser(cart.getUser());
      

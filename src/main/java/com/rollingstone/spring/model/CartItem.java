@@ -2,7 +2,6 @@ package com.rollingstone.spring.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,14 +9,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "CART_ITEMS")
-public class CartItems {
+public class CartItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	
+	@Column(name = "CART_ID", nullable = false)
+	private Long cartId;
 	
 	@Column(name = "OFFERID", nullable = false)
 	private Long offerId;
@@ -40,11 +43,7 @@ public class CartItems {
 	@Column(name = "FFM_TYPE", nullable = false)
 	private String fulfillmentType;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cart_id", nullable = false)
-	@JsonBackReference
-	Cart cart;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -55,6 +54,15 @@ public class CartItems {
 
 	public Long getOfferId() {
 		return offerId;
+	}
+
+	
+	public Long getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(Long cartId) {
+		this.cartId = cartId;
 	}
 
 	public void setOfferId(Long offerId) {
@@ -109,19 +117,36 @@ public class CartItems {
 		this.fulfillmentType = fulfillmentType;
 	}
 
-	public Cart getCart() {
-		return cart;
+	@Override
+	public String toString() {
+		return "CartItem [id=" + id + ", cartId=" + cartId + ", offerId=" + offerId + ", productId=" + productId
+				+ ", quantity=" + quantity + ", unit=" + unit + ", price=" + price + ", itemTotal=" + itemTotal
+				+ ", fulfillmentType=" + fulfillmentType + "]";
 	}
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
+	public CartItem(Long id, Long cartId, Long offerId, Long productId, int quantity, String unit, Double price,
+			Double itemTotal, String fulfillmentType) {
+		super();
+		this.id = id;
+		this.cartId = cartId;
+		this.offerId = offerId;
+		this.productId = productId;
+		this.quantity = quantity;
+		this.unit = unit;
+		this.price = price;
+		this.itemTotal = itemTotal;
+		this.fulfillmentType = fulfillmentType;
+	}
+
+	public CartItem() {
+		super();
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cart == null) ? 0 : cart.hashCode());
+		result = prime * result + ((cartId == null) ? 0 : cartId.hashCode());
 		result = prime * result + ((fulfillmentType == null) ? 0 : fulfillmentType.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((itemTotal == null) ? 0 : itemTotal.hashCode());
@@ -141,11 +166,11 @@ public class CartItems {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CartItems other = (CartItems) obj;
-		if (cart == null) {
-			if (other.cart != null)
+		CartItem other = (CartItem) obj;
+		if (cartId == null) {
+			if (other.cartId != null)
 				return false;
-		} else if (!cart.equals(other.cart))
+		} else if (!cartId.equals(other.cartId))
 			return false;
 		if (fulfillmentType == null) {
 			if (other.fulfillmentType != null)
@@ -187,31 +212,9 @@ public class CartItems {
 		return true;
 	}
 
-	public CartItems(Long id, Long offerId, Long productId, int quantity, String unit, Double price, Double itemTotal,
-			String fulfillmentType, Cart cart) {
-		super();
-		this.id = id;
-		this.offerId = offerId;
-		this.productId = productId;
-		this.quantity = quantity;
-		this.unit = unit;
-		this.price = price;
-		this.itemTotal = itemTotal;
-		this.fulfillmentType = fulfillmentType;
-		this.cart = cart;
-	}
-
-	public CartItems() {
-		super();
-	}
-
-	@Override
-	public String toString() {
-		return "CartItems [id=" + id + ", offerId=" + offerId + ", productId=" + productId + ", quantity=" + quantity
-				+ ", unit=" + unit + ", price=" + price + ", itemTotal=" + itemTotal + ", fulfillmentType="
-				+ fulfillmentType + ", cart=" + cart + "]";
-	}
 	
+	
+
 	
 	
 }

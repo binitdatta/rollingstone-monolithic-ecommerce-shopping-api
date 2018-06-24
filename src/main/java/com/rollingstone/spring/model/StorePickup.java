@@ -25,10 +25,10 @@ public class StorePickup {
 	private int highestStoreIndex;
 	
 	@Column(name = "RADIUS", nullable = false)
-	private int radius;
+	private String radius;
 	
 	@Column(name = "STORENAME", nullable = false)
-	private int storeName;
+	private String storeName;
 	
 	@Column(name = "DAYS", nullable = false)
 	private int days;
@@ -38,7 +38,7 @@ public class StorePickup {
 	private Date promoseDate;
 	
 	@Column(name = "INSTOCKSTATUS", nullable = false)
-	private String inStockStatus;
+	private boolean inStockStatus;
 	
 	@Column(name = "QUANTITY", nullable = false)
 	private int quantity;
@@ -125,19 +125,19 @@ public class StorePickup {
 		this.highestStoreIndex = highestStoreIndex;
 	}
 
-	public int getRadius() {
+	public String getRadius() {
 		return radius;
 	}
 
-	public void setRadius(int radius) {
+	public void setRadius(String radius) {
 		this.radius = radius;
 	}
 
-	public int getStoreName() {
+	public String getStoreName() {
 		return storeName;
 	}
 
-	public void setStoreName(int storeName) {
+	public void setStoreName(String storeName) {
 		this.storeName = storeName;
 	}
 
@@ -157,11 +157,11 @@ public class StorePickup {
 		this.promoseDate = promoseDate;
 	}
 
-	public String getInStockStatus() {
+	public boolean getInStockStatus() {
 		return inStockStatus;
 	}
 
-	public void setInStockStatus(String inStockStatus) {
+	public void setInStockStatus(boolean inStockStatus) {
 		this.inStockStatus = inStockStatus;
 	}
 
@@ -315,18 +315,56 @@ public class StorePickup {
 				+ saturdayWorkingHours + "]";
 	}
 
+	
+
+	
+	
+	public StorePickup(Long id, Long offerId, Long productId, int highestStoreIndex, String radius, String storeName,
+			int days, Date promoseDate, boolean inStockStatus, int quantity, int availableQuantity, boolean isAutostore,
+			boolean isNearest, String storeNumber, String streetAddress, String city, String state, String zipCode,
+			String phone, String sundayWorkingHours, String mondayWorkingHours, String tuesdayWorkingHours,
+			String wednesdayWorkingHours, String thursdayWorkingHours, String fridayWorkingHours,
+			String saturdayWorkingHours) {
+		super();
+		this.id = id;
+		this.offerId = offerId;
+		this.productId = productId;
+		this.highestStoreIndex = highestStoreIndex;
+		this.radius = radius;
+		this.storeName = storeName;
+		this.days = days;
+		this.promoseDate = promoseDate;
+		this.inStockStatus = inStockStatus;
+		this.quantity = quantity;
+		this.availableQuantity = availableQuantity;
+		this.isAutostore = isAutostore;
+		this.isNearest = isNearest;
+		this.storeNumber = storeNumber;
+		this.streetAddress = streetAddress;
+		this.city = city;
+		this.state = state;
+		this.zipCode = zipCode;
+		this.phone = phone;
+		this.sundayWorkingHours = sundayWorkingHours;
+		this.mondayWorkingHours = mondayWorkingHours;
+		this.tuesdayWorkingHours = tuesdayWorkingHours;
+		this.wednesdayWorkingHours = wednesdayWorkingHours;
+		this.thursdayWorkingHours = thursdayWorkingHours;
+		this.fridayWorkingHours = fridayWorkingHours;
+		this.saturdayWorkingHours = saturdayWorkingHours;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((saturdayWorkingHours == null) ? 0 : saturdayWorkingHours.hashCode());
 		result = prime * result + availableQuantity;
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + days;
 		result = prime * result + ((fridayWorkingHours == null) ? 0 : fridayWorkingHours.hashCode());
 		result = prime * result + highestStoreIndex;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((inStockStatus == null) ? 0 : inStockStatus.hashCode());
+		result = prime * result + (inStockStatus ? 1231 : 1237);
 		result = prime * result + (isAutostore ? 1231 : 1237);
 		result = prime * result + (isNearest ? 1231 : 1237);
 		result = prime * result + ((mondayWorkingHours == null) ? 0 : mondayWorkingHours.hashCode());
@@ -335,9 +373,10 @@ public class StorePickup {
 		result = prime * result + ((productId == null) ? 0 : productId.hashCode());
 		result = prime * result + ((promoseDate == null) ? 0 : promoseDate.hashCode());
 		result = prime * result + quantity;
-		result = prime * result + radius;
+		result = prime * result + ((radius == null) ? 0 : radius.hashCode());
+		result = prime * result + ((saturdayWorkingHours == null) ? 0 : saturdayWorkingHours.hashCode());
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
-		result = prime * result + storeName;
+		result = prime * result + ((storeName == null) ? 0 : storeName.hashCode());
 		result = prime * result + ((storeNumber == null) ? 0 : storeNumber.hashCode());
 		result = prime * result + ((streetAddress == null) ? 0 : streetAddress.hashCode());
 		result = prime * result + ((sundayWorkingHours == null) ? 0 : sundayWorkingHours.hashCode());
@@ -357,11 +396,6 @@ public class StorePickup {
 		if (getClass() != obj.getClass())
 			return false;
 		StorePickup other = (StorePickup) obj;
-		if (saturdayWorkingHours == null) {
-			if (other.saturdayWorkingHours != null)
-				return false;
-		} else if (!saturdayWorkingHours.equals(other.saturdayWorkingHours))
-			return false;
 		if (availableQuantity != other.availableQuantity)
 			return false;
 		if (city == null) {
@@ -383,10 +417,7 @@ public class StorePickup {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (inStockStatus == null) {
-			if (other.inStockStatus != null)
-				return false;
-		} else if (!inStockStatus.equals(other.inStockStatus))
+		if (inStockStatus != other.inStockStatus)
 			return false;
 		if (isAutostore != other.isAutostore)
 			return false;
@@ -419,14 +450,25 @@ public class StorePickup {
 			return false;
 		if (quantity != other.quantity)
 			return false;
-		if (radius != other.radius)
+		if (radius == null) {
+			if (other.radius != null)
+				return false;
+		} else if (!radius.equals(other.radius))
+			return false;
+		if (saturdayWorkingHours == null) {
+			if (other.saturdayWorkingHours != null)
+				return false;
+		} else if (!saturdayWorkingHours.equals(other.saturdayWorkingHours))
 			return false;
 		if (state == null) {
 			if (other.state != null)
 				return false;
 		} else if (!state.equals(other.state))
 			return false;
-		if (storeName != other.storeName)
+		if (storeName == null) {
+			if (other.storeName != null)
+				return false;
+		} else if (!storeName.equals(other.storeName))
 			return false;
 		if (storeNumber == null) {
 			if (other.storeNumber != null)
@@ -464,41 +506,6 @@ public class StorePickup {
 		} else if (!zipCode.equals(other.zipCode))
 			return false;
 		return true;
-	}
-
-	public StorePickup(Long id, Long offerId, Long productId, int highestStoreIndex, int radius, int storeName,
-			int days, Date promoseDate, String inStockStatus, int quantity, int availableQuantity, boolean isAutostore,
-			boolean isNearest, String storeNumber, String streetAddress, String city, String state, String zipCode,
-			String phone, String sundayWorkingHours, String mondayWorkingHours, String tuesdayWorkingHours,
-			String wednesdayWorkingHours, String thursdayWorkingHours, String fridayWorkingHours,
-			String saturdayWorkingHours) {
-		super();
-		this.id = id;
-		this.offerId = offerId;
-		this.productId = productId;
-		this.highestStoreIndex = highestStoreIndex;
-		this.radius = radius;
-		this.storeName = storeName;
-		this.days = days;
-		this.promoseDate = promoseDate;
-		this.inStockStatus = inStockStatus;
-		this.quantity = quantity;
-		this.availableQuantity = availableQuantity;
-		this.isAutostore = isAutostore;
-		this.isNearest = isNearest;
-		this.storeNumber = storeNumber;
-		this.streetAddress = streetAddress;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipCode;
-		this.phone = phone;
-		this.sundayWorkingHours = sundayWorkingHours;
-		this.mondayWorkingHours = mondayWorkingHours;
-		this.tuesdayWorkingHours = tuesdayWorkingHours;
-		this.wednesdayWorkingHours = wednesdayWorkingHours;
-		this.thursdayWorkingHours = thursdayWorkingHours;
-		this.fridayWorkingHours = fridayWorkingHours;
-		this.saturdayWorkingHours = saturdayWorkingHours;
 	}
 
 	public StorePickup() {
